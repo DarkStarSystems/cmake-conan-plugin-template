@@ -2,7 +2,7 @@
 
 set -e
 
-PRESET=${1:-default}
+PRESET=${1:-Release}
 
 # Removing build dir isn't enough to clean, because of CMakeUserPresets
 if [[ -e CMakeUserPresets.json && ! -d build ]]; then
