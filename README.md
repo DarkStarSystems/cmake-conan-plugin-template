@@ -14,7 +14,7 @@ of that integration is included in this repo as
 
 ## Build
 
-To build the plugin, use `./build.sh`. 
+To build the plugin, use [./build.sh](build.sh). 
 This runs `cmake --preset Release` to configure, and then
 `cmake --build --preset Release` to do the build using the
 configured build tool (cmake's default is Makefiles).
@@ -34,16 +34,7 @@ The `CMakePresets.json` file is configured to
   cmake --build --preset default --config Release
   ```
 
-  (this is in `./build-ninja.sh`)
-
-
-> [!NOTE]
-> This only works with the conan-cmake integration, i.e. cmake as driver,
-> and only with the default preset. (But you can pass `--config` to specify build type.)
-
-> [!CAUTION]
-> I haven't yet found out how to do a manual `conan install` invocation
-> using a multi-config generators.
+  (this is in [build-ninja.sh](build-ninja.sh))
 
 * To do a build with a manual `conan install` invocation, do it like this:
   ```sh
@@ -57,6 +48,17 @@ The `CMakePresets.json` file is configured to
   cmake --preset conan-debug
   cmake --build --preset conan-debug
   ```
+
+* To do a multi-config build with manual `conan install`, do this:
+  ```
+  conan install . --build=missing -c tools.cmake.cmaketoolchain:generator="Ninja Multi-Config" -s build_type=Debug
+  conan install . --build=missing -c tools.cmake.cmaketoolchain:generator="Ninja Multi-Config"
+  cmake --preset conan-default
+  cmake --build --preset conan-debug
+  cmake --build --preset conan-release
+  ```
+
+  (this is in [build-conan-ninja.sh](build-conan-ninja.sh))
 
 * To do a clean build, remove the `build` directory, and `CMakeUserPresets.json`. 
   If you don't remove the presets file the build will fail 
