@@ -11,6 +11,6 @@ find_package(spdlog)
 
 include(Plugin.cmake)
 
-add_plugin(TARGET plugin
+add_plugin(TARGET test-plugin
   SOURCES plugin.cxx
 )

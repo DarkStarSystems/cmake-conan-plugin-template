@@ -12,9 +12,26 @@
       "name": "default",
       "displayName": "Default Config",
       "description": "Default build (Release)",
+      "binaryDir": "${sourceDir}/build/Release",
       "cacheVariables": {
         "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "conan_provider.cmake",
         "CMAKE_BUILD_TYPE": "Release"
+      },
+      "environment": {
+      }
+    },
+    {
+      "name": "Release",
+      "inherits": "default"
+    },
+    {
+      "name": "Debug",
+      "displayName": "Debug Config",
+      "description": "Debug build",
+      "binaryDir": "${sourceDir}/build/Debug",
+      "cacheVariables": {
+        "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "conan_provider.cmake",
+        "CMAKE_BUILD_TYPE": "Debug"
       },
       "environment": {
       }
@@ -24,6 +41,14 @@
     {
       "name": "default",
       "configurePreset": "default"
+    },
+    {
+      "name": "Release",
+      "inherits": "default"
+    },
+    {
+      "name": "Debug",
+      "configurePreset": "Debug"
     }
   ]
 }

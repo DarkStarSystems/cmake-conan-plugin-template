@@ -9,12 +9,18 @@ function(add_plugin)
     "${options}" "${oneValueArgs}" "${multiValueArgs}")
 
   if(NOT PLUGIN_TARGET)
-    message(FATAL_ERROR "add_ae_plugin: no TARGET")
+    message(FATAL_ERROR "add_plugin: no TARGET")
   endif()
   message(STATUS "Building Plugin ${PLUGIN_TARGET}")
 
   add_library(${PLUGIN_TARGET} MODULE ${PLUGIN_SOURCES})
 
-  target_link_libraries(${PLUGIN_TARGET} spdlog::spdlog)
+  target_link_libraries(${PLUGIN_TARGET} PRIVATE spdlog::spdlog)
+
+  set_target_properties(
+    ${PLUGIN_TARGET} PROPERTIES
+    SUFFIX .plugin
+    PREFIX ""
+  )
 
 endfunction()
