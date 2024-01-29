@@ -21,6 +21,8 @@ function(add_plugin)
     ${PLUGIN_TARGET} PROPERTIES
     SUFFIX .plugin
     PREFIX ""
+    BUNDLE True                 # build as CFBundle on MacOS
+    MACOSX_BUNDLE_GUI_IDENTIFIER local.test.plugin
   )
 
 endfunction()
