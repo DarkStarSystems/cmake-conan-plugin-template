@@ -25,9 +25,25 @@ In this template, I've used the `spdlog` logging framework based on
 
 ## Notes
 
+* To use a different generator, e.g. "Ninja Multi-Config":
+  > [!NOTE]
+  > This only works with the conan-cmake integration, i.e. cmake as driver,
+  > and only with the default preset. (But you can pass `--config` to specify build type.)
+  ```sh
+  cmake --preset default -G "Ninja Multi-Config"
+  cmake --build --preset default --config Debug
+  cmake --build --preset default --config Release
+  ```
+  (this is in `./build-ninja.sh`)
+
+  > [!CAUTION]
+  > I haven't yet found out how to do a manual `conan install` invocation
+  > using a multi-config 
+
+
 * To do a build with a manual `conan install` invocation, do it like this:
   ```sh
-  conan install .
+  conan install . --build=missing
   cmake --preset conan-release
   cmake --build --preset conan-release
   ```
