@@ -43,13 +43,13 @@ generator, compiler info, etc.
 * To do a build with a manual `conan install` invocation, do it like this:
   ```sh
   conan install . --build=missing
-  cmake --preset conan-release
+  cmake --preset conan-release # or on Windows, cmake --preset conan-default, because VS is multi-config
   cmake --build --preset conan-release
   ```
   and to build in debug mode, do this:
   ```sh
   conan install . -s build_type=Debug --build=missing
-  cmake --preset conan-debug
+  cmake --preset conan-debug # or on Windows, cmake --preset conan-default
   cmake --build --preset conan-debug
   ```
 
