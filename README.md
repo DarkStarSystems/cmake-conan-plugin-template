@@ -23,7 +23,11 @@ The configure step invokes `conan` to build/install the dependencies.
 In this template, I've used the `spdlog` logging framework based on
 `fmt` as a sample dependency, just to show how the system works.
 
-The `CMakePresets.json` file is configured to 
+The `CMakePresets.json` default preset is configured to include the
+[conan-cmake provider](conan_provider.cmake) which makes cmake invoke
+conan to install the dependencies and pass along all the necessary
+generator, compiler info, etc.
+
 ## Notes
 
 * To use a different generator, e.g. "Ninja Multi-Config":
