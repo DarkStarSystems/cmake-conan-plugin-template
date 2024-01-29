@@ -15,31 +15,35 @@ of that integration is included in this repo as
 ## Build
 
 To build the plugin, use `./build.sh`. 
-This runs `cmake --preset default` to configure, and then
-`cmake --build --preset default` to do the build using the
+This runs `cmake --preset Release` to configure, and then
+`cmake --build --preset Release` to do the build using the
 configured build tool (cmake's default is Makefiles).
 
 The configure step invokes `conan` to build/install the dependencies.
 In this template, I've used the `spdlog` logging framework based on
 `fmt` as a sample dependency, just to show how the system works.
 
+The `CMakePresets.json` file is configured to 
 ## Notes
 
 * To use a different generator, e.g. "Ninja Multi-Config":
-  > [!NOTE]
-  > This only works with the conan-cmake integration, i.e. cmake as driver,
-  > and only with the default preset. (But you can pass `--config` to specify build type.)
+
   ```sh
   cmake --preset default -G "Ninja Multi-Config"
   cmake --build --preset default --config Debug
   cmake --build --preset default --config Release
   ```
+
   (this is in `./build-ninja.sh`)
 
-  > [!CAUTION]
-  > I haven't yet found out how to do a manual `conan install` invocation
-  > using a multi-config 
 
+> [!NOTE]
+> This only works with the conan-cmake integration, i.e. cmake as driver,
+> and only with the default preset. (But you can pass `--config` to specify build type.)
+
+> [!CAUTION]
+> I haven't yet found out how to do a manual `conan install` invocation
+> using a multi-config generators.
 
 * To do a build with a manual `conan install` invocation, do it like this:
   ```sh
