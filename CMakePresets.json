@@ -1,12 +1,5 @@
 {
   "version": 6,
-  "cmakeMinimumRequired": {
-    "major": 3,
-    "minor": 26,                // should match CMakeLists.txt
-    "patch": 0
-  },
-  "include": [
-  ],
   "configurePresets": [
     {
       "name": "default",
@@ -16,8 +9,6 @@
       "cacheVariables": {
         "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "conan_provider.cmake",
         "CMAKE_BUILD_TYPE": "Release"
-      },
-      "environment": {
       }
     },
     {
@@ -32,8 +23,6 @@
       "cacheVariables": {
         "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "conan_provider.cmake",
         "CMAKE_BUILD_TYPE": "Debug"
-      },
-      "environment": {
       }
     }
   ],

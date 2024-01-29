@@ -25,12 +25,18 @@ In this template, I've used the `spdlog` logging framework based on
 
 ## Notes
 
-* The way the CMake presets are defined, you must use `cmake` as the driver. 
-  Manually doing `conan install .` will cause duplicate CMake presets to be generated.
-  
-  * I would like to make it possible to build as
-    `conan install . && cmake --preset <something>` 
-    but don't know how to do that.
+* To do a build with a manual `conan install` invocation, do it like this:
+  ```sh
+  conan install .
+  cmake --preset conan-release
+  cmake --build --preset conan-release
+  ```
+  and to build in debug mode, do this:
+  ```sh
+  conan install . -s build_type=Debug --build=missing
+  cmake --preset conan-debug
+  cmake --build --preset conan-debug
+  ```
 
 * To do a clean build, remove the `build` directory, and `CMakeUserPresets.json`. 
   If you don't remove the presets file the build will fail 
