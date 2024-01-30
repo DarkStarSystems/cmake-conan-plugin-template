@@ -15,14 +15,17 @@ function(add_plugin)
 
   add_library(${PLUGIN_TARGET} MODULE ${PLUGIN_SOURCES})
 
-  target_link_libraries(${PLUGIN_TARGET} PRIVATE spdlog::spdlog)
+  target_link_libraries(${PLUGIN_TARGET} PRIVATE spdlog::spdlog_header_only)
 
+  target_compile_features(${PLUGIN_TARGET} PUBLIC cxx_std_20)
   set_target_properties(
     ${PLUGIN_TARGET} PROPERTIES
     SUFFIX .plugin
     PREFIX ""
     BUNDLE True                 # build as CFBundle on MacOS
     MACOSX_BUNDLE_GUI_IDENTIFIER local.test.plugin
+    CXX_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN True
   )
 
 endfunction()
